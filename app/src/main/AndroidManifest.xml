@@ -27,7 +27,15 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+
+        <!-- Declaration for the Main Activity -->
+
 
     </application>
+
+
 
 </manifest>
