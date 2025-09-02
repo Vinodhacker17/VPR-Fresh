@@ -1,0 +1,18 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <!-- We are using .Light to prevent it from going into dark mode -->
+    <style name="Theme.BlinkITClone" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/BlinkITClone_green</item>
+        <item name="colorPrimaryVariant">@color/BlinkITClone_green</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/BlinkITClone_yellow</item>
+        <item name="colorSecondaryVariant">@color/BlinkITClone_yellow</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+</resources>
+
