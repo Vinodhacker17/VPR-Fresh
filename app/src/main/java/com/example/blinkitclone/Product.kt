@@ -1,6 +1,6 @@
 package com.example.blinkitclone
 
-import androidx.appcompat.text.AllCapsTransformationMethod
+// The unused import has been removed from here
 
 data class Product(
     val name: String,
