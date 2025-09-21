@@ -16,18 +16,12 @@ class ProductAdapter(
     private val context: Context
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
-    fun updateList(newList: List<Product>) {
-        productList.clear()
-        productList.addAll(newList)
-        notifyDataSetChanged()
-    }
-
     inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val productImage: ImageView = itemView.findViewById(R.id.product_image)
-        val productName: TextView = itemView.findViewById(R.id.product_name)
-        val productDescription: TextView = itemView.findViewById(R.id.product_description)
-        val productPrice: TextView = itemView.findViewById(R.id.product_price)
-        val addToCartButton: MaterialButton = itemView.findViewById(R.id.add_to_cart_button)
+        val name: TextView = itemView.findViewById(R.id.product_name)
+        val description: TextView = itemView.findViewById(R.id.product_description)
+        val price: TextView = itemView.findViewById(R.id.product_price)
+        val image: ImageView = itemView.findViewById(R.id.product_image)
+        val addButton: MaterialButton = itemView.findViewById(R.id.add_button)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
@@ -37,25 +31,22 @@ class ProductAdapter(
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = productList[position]
-        holder.productName.text = product.name
-        holder.productDescription.text = product.description
-        holder.productPrice.text = product.price
+        holder.name.text = product.name
+        holder.description.text = product.description
+        holder.price.text = product.price
+        Glide.with(context).load(product.imageUrl).into(holder.image)
 
-        Glide.with(context)
-            .load(product.imageUrl)
-            .into(holder.productImage)
-
-        // --- THIS IS THE NEW CODE ---
-        // We add a click listener to the button
-        holder.addToCartButton.setOnClickListener {
-            // Show a simple message when the button is clicked
+        // --- THIS IS THE UPDATED LOGIC ---
+        holder.addButton.setOnClickListener {
+            Cart.addItem(product)
             Toast.makeText(context, "${product.name} added to cart", Toast.LENGTH_SHORT).show()
         }
-        // --------------------------
     }
 
-    override fun getItemCount(): Int {
-        return productList.size
+    override fun getItemCount() = productList.size
+
+    fun updateList(newList: List<Product>) {
+        productList = newList.toMutableList()
+        notifyDataSetChanged()
     }
 }
-

@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
+// This is the correct code for displaying the CATEGORY grid
 class CategoryAdapter(private val categoryList: List<Category>) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
@@ -29,3 +30,4 @@ class CategoryAdapter(private val categoryList: List<Category>) :
 
     override fun getItemCount() = categoryList.size
 }
+

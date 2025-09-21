@@ -1,6 +1,8 @@
+//...
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -33,6 +35,12 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    // --- ADD THIS BLOCK HERE ---
+    buildFeatures {
+        viewBinding = true
+    }
+    // -------------------------
 }
 
 dependencies {
@@ -41,8 +49,11 @@ dependencies {
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     testImplementation("junit:junit:4.13.2")
+    implementation("com.google.firebase:firebase-auth-ktx")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
+    implementation("com.google.firebase:firebase-messaging-ktx")
 
     // Corrected Blinkit Clone dependencies
     implementation("androidx.recyclerview:recyclerview:1.3.2")
@@ -50,3 +61,4 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
 }
+

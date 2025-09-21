@@ -17,26 +17,26 @@
 
     <!-- Image fills the top half of the screen -->
 
-    <!-- Login UI elements start from the bottom half -->
-
     <ImageView
         android:id="@+id/login_image"
-        android:layout_width="413dp"
-        android:layout_height="378dp"
-        android:scaleType="fitXY"
+        android:layout_width="435dp"
+        android:layout_height="385dp"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerCrop"
         android:src="@drawable/login_page1"
+        android:translationY="-20sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline_middle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.947" />
 
     <TextView
         android:id="@+id/tagline_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Always Fresh Always Near"
+        android:text="Welcome Back!"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -49,83 +49,72 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="Log in"
+        android:text="Log in to your account"
         android:textColor="#666666"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tagline_main" />
 
-    <LinearLayout
-        android:id="@+id/phone_input_layout"
+    <EditText
+        android:id="@+id/email_input"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="60dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginTop="24dp"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
         android:background="@drawable/login_input_background"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:padding="14dp"
+        app:layout_constraintTop_toBottomOf="@id/tagline_sub"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tagline_sub">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:importantForAutofill="no" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="+91"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+    <EditText
+        android:id="@+id/password_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="16dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:background="@drawable/login_input_background"
+        android:padding="14dp"
+        app:layout_constraintTop_toBottomOf="@id/email_input"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:importantForAutofill="no" />
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            android:background="#DDDDDD" />
-
-        <EditText
-            android:id="@+id/phone_number_input"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@null"
-            android:hint="Enter mobile number"
-            android:inputType="phone"
-            android:textColorHint="#999999"
-            android:textSize="18sp" />
-    </LinearLayout>
-
+    <!-- ID CHANGED HERE -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/continue_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:backgroundTint="@color/black"
+        android:layout_marginTop="24dp"
         android:padding="14dp"
-        android:text="Continue"
-        android:textColor="@color/white"
-        app:cornerRadius="12dp"
+        android:text="Log In"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone_input_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/password_input" />
 
+    <!-- ID CHANGED HERE -->
     <TextView
-        android:id="@+id/terms_text"
+        android:id="@+id/sign_up_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="By continuing, you agree to our: Terms of Service &amp; Privacy policy"
-        android:textColor="#999999"
-        android:textSize="12sp"
+        android:text="Don't have an account? Sign Up"
+        android:textColor="@color/black"
+        android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/continue_button"
+        app:layout_constraintVertical_bias="0.2"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

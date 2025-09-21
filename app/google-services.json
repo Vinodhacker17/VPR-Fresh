@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "356853201865",
+    "project_id": "vpr-fresh",
+    "storage_bucket": "vpr-fresh.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356853201865:android:bb49cb429168b8904c4618",
+        "android_client_info": {
+          "package_name": "com.example.blinkitclone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXhhvFdJKx7S6uvfgxsYhPVsTbMhPiMTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

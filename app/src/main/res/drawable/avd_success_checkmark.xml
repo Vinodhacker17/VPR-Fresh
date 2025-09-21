@@ -1,0 +1,6 @@
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_success_checkmark_vector">
+    <target
+        android:name="checkmark"
+        android:animation="@animator/draw_checkmark" />
+</animated-vector>

@@ -1,23 +1,27 @@
 package com.example.blinkitclone
 
-// A Singleton object to manage the shopping cart globally
 object Cart {
-    private val items = mutableListOf<Product>()
+    private val cartItems = mutableListOf<Product>()
 
     fun addItem(product: Product) {
-        items.add(product)
+        cartItems.add(product)
+    }
+
+    fun removeItem(product: Product) {
+        cartItems.remove(product)
     }
 
     fun getItems(): List<Product> {
-        return items.toList()
+        return cartItems.toList()
     }
 
     fun getTotalPrice(): String {
-        val total = items.sumOf { it.price.replace("₹", "").toDouble() }
+        val total = cartItems.sumOf { it.price.replace("₹", "").toDoubleOrNull() ?: 0.0 }
         return "₹${"%.2f".format(total)}"
     }
 
+    // --- THIS IS THE MISSING FUNCTION ---
     fun clearCart() {
-        items.clear()
+        cartItems.clear()
     }
 }

@@ -1,5 +1,8 @@
 package com.example.blinkitclone
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,9 +10,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
+    private val CHANNEL_ID = "order_updates"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        createNotificationChannel()
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNav.setOnItemSelectedListener {
@@ -17,15 +24,30 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.nav_home -> selectedFragment = HomeFragment()
                 R.id.nav_categories -> selectedFragment = CategoriesFragment()
-                R.id.nav_orders -> selectedFragment = OrdersFragment()
+                // --- THIS IS THE UPDATED LINE ---
+                R.id.nav_cart -> selectedFragment = OrdersFragment() // Changed from nav_orders
             }
             supportFragmentManager.beginTransaction().replace(R.id.fragment_container, selectedFragment).commit()
             true
         }
 
-        // Set the default fragment to be the HomeFragment when the app starts
+        // Set the default fragment when the app first loads
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
+        }
+    }
+
+    private fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Order Updates"
+            val descriptionText = "Notifications about your order status"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+                description = descriptionText
+            }
+            val notificationManager: NotificationManager =
+                getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
         }
     }
 }

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="24dp"
+    tools:context=".OrderPlacedActivity">
+
+    <ImageView
+        android:id="@+id/success_animation_view"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/avd_success_checkmark"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:contentDescription="Success Animation"/>
+
+    <TextView
+        android:id="@+id/success_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order Placed Successfully!"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_below="@id/success_animation_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"/>
+
+    <TextView
+        android:id="@+id/success_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your items are on the way. Thank you for your order!"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:layout_below="@id/success_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/back_to_home_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back to Home"
+        android:layout_alignParentBottom="true"
+        android:padding="14dp"/>
+
+</RelativeLayout>
