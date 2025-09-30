@@ -1,19 +1,52 @@
 package com.example.blinkitclone
 
+import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Geocoder
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.textfield.TextInputEditText
+import java.util.Locale
 
 class HomeFragment : Fragment() {
 
     private lateinit var productAdapter: ProductAdapter
     private val allProducts = createProductList()
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var locationTextView: TextView
+
+    // Banner variables
+    private lateinit var bannerViewPager: ViewPager2
+    private val handler = Handler(Looper.getMainLooper())
+    private lateinit var autoSlideRunnable: Runnable
+
+    private val requestLocationPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+            if (isGranted) {
+                getCurrentLocation()
+            } else {
+                Toast.makeText(requireContext(), "Location permission denied", Toast.LENGTH_SHORT).show()
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,11 +54,16 @@ class HomeFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        // All the old notification button logic has been removed from here.
+        initBanner(view)
 
+        locationTextView = view.findViewById(R.id.user_location)
         val productRecyclerView = view.findViewById<RecyclerView>(R.id.product_recycler_view)
         val categoryTabs = view.findViewById<TabLayout>(R.id.category_tabs)
         val profileIcon = view.findViewById<ImageView>(R.id.user_profile_icon)
+        val searchEditText = view.findViewById<TextInputEditText>(R.id.search_edit_text)
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        checkLocationPermission()
 
         profileIcon.setOnClickListener {
             startActivity(Intent(activity, ProfileActivity::class.java))
@@ -34,11 +72,18 @@ class HomeFragment : Fragment() {
         productAdapter = ProductAdapter(allProducts.toMutableList(), requireContext())
         productRecyclerView.adapter = productAdapter
 
+        searchEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                filterProducts(s.toString())
+            }
+        })
+
         val categories = getCategories()
         for (category in categories) {
             categoryTabs.addTab(categoryTabs.newTab().setText(category))
         }
-
         categoryTabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 val selectedCategory = tab?.text.toString()
@@ -50,6 +95,74 @@ class HomeFragment : Fragment() {
         })
 
         return view
+    }
+
+    private fun initBanner(view: View) {
+        bannerViewPager = view.findViewById(R.id.banner_view_pager)
+
+        // Add the new banner_3 to the list
+        val bannerImages = listOf(R.drawable.banner_1, R.drawable.banner_2, R.drawable.banner_3)
+        val bannerAdapter = BannerAdapter(bannerImages)
+        bannerViewPager.adapter = bannerAdapter
+
+        // Removed the TabLayoutMediator logic
+
+        autoSlideRunnable = Runnable {
+            val currentItem = bannerViewPager.currentItem
+            val nextItem = if (currentItem == bannerAdapter.itemCount - 1) 0 else currentItem + 1
+            bannerViewPager.setCurrentItem(nextItem, true)
+            handler.postDelayed(autoSlideRunnable, 3000)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        handler.postDelayed(autoSlideRunnable, 3000)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        handler.removeCallbacks(autoSlideRunnable)
+    }
+
+    private fun filterProducts(query: String) {
+        val filteredList = allProducts.filter { product ->
+            product.name.lowercase(Locale.getDefault()).contains(query.lowercase(Locale.getDefault()))
+        }
+        productAdapter.updateList(filteredList)
+    }
+
+    private fun checkLocationPermission() {
+        when {
+            ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                getCurrentLocation()
+            }
+            else -> {
+                requestLocationPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+            }
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun getCurrentLocation() {
+        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+            if (location != null) {
+                val geocoder = Geocoder(requireContext(), Locale.getDefault())
+                try {
+                    val addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+                    if (addresses != null && addresses.isNotEmpty()) {
+                        val address = addresses[0]
+                        val locationString = "${address.locality ?: ""}, ${address.subLocality ?: ""}"
+                        locationTextView.text = locationString
+                    }
+                } catch (e: Exception) {
+                    // Handle exception
+                }
+            }
+        }
     }
 
     private fun getCategories(): List<String> {
@@ -86,4 +199,3 @@ class HomeFragment : Fragment() {
         )
     }
 }
-

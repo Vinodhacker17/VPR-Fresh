@@ -16,7 +16,7 @@ class OrderPlacedActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // --- THIS IS THE CRUCIAL LOGIC ---
-        // It gets the drawable from the ImageView and starts the animation
+        // It gets the drawable from the ImageView and starts the animationH
         val animatable = binding.successAnimationView.drawable as Animatable
         animatable.start()
         // ---------------------------------
