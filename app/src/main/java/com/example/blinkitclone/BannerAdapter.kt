@@ -5,8 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
-class BannerAdapter(private val bannerImages: List<Int>) :
+// The adapter now accepts a list of String URLs
+class BannerAdapter(private val bannerImageUrls: List<String>) :
     RecyclerView.Adapter<BannerAdapter.BannerViewHolder>() {
 
     inner class BannerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -20,8 +22,11 @@ class BannerAdapter(private val bannerImages: List<Int>) :
     }
 
     override fun onBindViewHolder(holder: BannerViewHolder, position: Int) {
-        holder.imageView.setImageResource(bannerImages[position])
+        // We now use Glide to load the image from the URL
+        Glide.with(holder.itemView.context)
+            .load(bannerImageUrls[position])
+            .into(holder.imageView)
     }
 
-    override fun getItemCount() = bannerImages.size
+    override fun getItemCount() = bannerImageUrls.size
 }

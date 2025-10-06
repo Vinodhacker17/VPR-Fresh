@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="16dp"
-    android:gravity="center_vertical">
+    android:padding="16dp">
 
     <ImageView
         android:id="@+id/cart_item_image"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:scaleType="centerCrop"
-        android:contentDescription="@string/app_name"/>
+        android:layout_centerVertical="true"/>
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_toEndOf="@id/cart_item_image"
+        android:layout_toStartOf="@id/quantity_control_layout"
         android:orientation="vertical"
-        android:layout_marginStart="16dp">
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_centerVertical="true">
 
         <TextView
             android:id="@+id/cart_item_name"
@@ -33,24 +34,48 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Description"/>
+
+        <TextView
+            android:id="@+id/cart_item_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="₹0.00"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/cart_item_price"
+    <LinearLayout
+        android:id="@+id/quantity_control_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="₹0.00"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"/>
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/category_item_background"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true">
 
-    <ImageButton
-        android:id="@+id/delete_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_delete"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:layout_marginStart="16dp"
-        android:contentDescription="Remove item"/>
+        <ImageButton
+            android:id="@+id/minus_button"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_remove"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+        <TextView
+            android:id="@+id/quantity_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"/>
+        <ImageButton
+            android:id="@+id/plus_button"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_add"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+    </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

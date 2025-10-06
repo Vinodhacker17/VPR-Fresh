@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     android:padding="24dp"
     android:background="@color/pastel_green"
     tools:context=".RegisterActivity">
@@ -13,37 +12,91 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create Account"
+        android:text="Create Your Account"
         android:textSize="28sp"
         android:textStyle="bold"
         android:textColor="@color/black"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="60dp"
         android:layout_marginBottom="32dp"/>
 
-    <EditText
-        android:id="@+id/email_input_register"
+    <!-- Full Name Input -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/name_layout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:background="@drawable/login_input_background"
-        android:padding="14dp"
-        android:layout_marginBottom="16dp"/>
+        android:hint="Full Name">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/name_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/password_input_register"
+    <!-- Email Input -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/email_layout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:background="@drawable/login_input_background"
-        android:padding="14dp"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginTop="16dp"
+        android:hint="Email Address">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Password Input -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password_layout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:passwordToggleEnabled="true"
+        android:hint="Password (min. 6 characters)">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/register_button"
+        android:id="@+id/sign_up_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign Up"
-        android:padding="14dp"/>
+        android:text="Sign Up with Email"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/black"
+        android:padding="16dp"
+        android:layout_marginTop="24dp"
+        app:cornerRadius="28dp"/>
+
+    <!-- This empty view pushes the Google button to the bottom -->
+
+    <!-- "Sign in with Google" BUTTON -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/google_sign_in_button"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign in with Google"
+        android:textColor="@color/black"
+        app:icon="@drawable/ic_google_logo"
+        app:iconTint="@null"
+        app:iconPadding="16dp"
+        android:padding="14dp"
+        app:strokeColor="#DDDDDD"
+        app:cornerRadius="28dp"
+        android:layout_marginBottom="24dp"/>
 
 </LinearLayout>

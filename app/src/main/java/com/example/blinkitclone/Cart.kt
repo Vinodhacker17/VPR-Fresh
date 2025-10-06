@@ -1,27 +1,41 @@
 package com.example.blinkitclone
 
 object Cart {
-    private val cartItems = mutableListOf<Product>()
+    private val items = mutableMapOf<Product, Int>()
 
     fun addItem(product: Product) {
-        cartItems.add(product)
+        val currentQuantity = items[product] ?: 0
+        items[product] = currentQuantity + 1
     }
 
     fun removeItem(product: Product) {
-        cartItems.remove(product)
+        items.remove(product)
     }
 
-    fun getItems(): List<Product> {
-        return cartItems.toList()
+    fun increaseQuantity(product: Product) {
+        addItem(product)
     }
 
-    fun getTotalPrice(): String {
-        val total = cartItems.sumOf { it.price.replace("₹", "").toDoubleOrNull() ?: 0.0 }
-        return "₹${"%.2f".format(total)}"
+    fun decreaseQuantity(product: Product) {
+        val currentQuantity = items[product] ?: 0
+        if (currentQuantity > 1) {
+            items[product] = currentQuantity - 1
+        } else {
+            removeItem(product)
+        }
     }
 
-    // --- THIS IS THE MISSING FUNCTION ---
+    fun getItemsWithQuantity(): Map<Product, Int> {
+        return items.toMap()
+    }
+
+    fun getTotalPrice(): Double {
+        return items.entries.sumOf { (product, quantity) ->
+            (product.price.replace("₹", "").toDoubleOrNull() ?: 0.0) * quantity
+        }
+    }
+
     fun clearCart() {
-        cartItems.clear()
+        items.clear()
     }
 }

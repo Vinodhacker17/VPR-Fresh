@@ -9,6 +9,10 @@
     <string name="home_delivery_time">VPR Fresh in 11 minutes</string>
     <string name="home_user_location">Srinivasa Nagar, Singasandra</string>
     <string name="home_search_hint">Search for products...</string>
+    <string name="cart_title">My Cart</string>
+    <string name="bill_details">Bill Details</string>
+    <string name="grand_total">Grand Total</string>
+    <string name="select_address">Add or Select address</string>
 
 </resources>
 

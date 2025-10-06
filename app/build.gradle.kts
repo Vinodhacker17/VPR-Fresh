@@ -55,6 +55,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
     implementation("com.google.firebase:firebase-messaging-ktx")
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
 
     // Corrected Blinkit Clone dependencies
     implementation("androidx.recyclerview:recyclerview:1.3.2")

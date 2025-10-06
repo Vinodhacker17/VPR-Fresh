@@ -7,15 +7,12 @@
     android:background="@color/pastel_green"
     tools:context=".LoginActivity">
 
-    <!-- Guideline to split the screen into two halves -->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_middle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.50" />
-
-    <!-- Image fills the top half of the screen -->
 
     <ImageView
         android:id="@+id/login_image"
@@ -29,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.947" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tagline_main"
@@ -72,8 +69,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:importantForAutofill="no" />
 
-    <!-- ID CHANGED HERE -->
-
     <EditText
         android:id="@+id/password_input"
         android:layout_width="0dp"
@@ -104,7 +99,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_input" />
 
-    <!-- ID CHANGED HERE -->
     <TextView
         android:id="@+id/sign_up_text"
         android:layout_width="wrap_content"
@@ -119,4 +113,3 @@
         app:layout_constraintVertical_bias="0.2"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

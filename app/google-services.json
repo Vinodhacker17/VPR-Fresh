@@ -12,7 +12,20 @@
           "package_name": "com.example.blinkitclone"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "356853201865-2nke2dqh50nj8bbg3504cijigfde4go6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.blinkitclone",
+            "certificate_hash": "eeea1690727007f015a47444ba19605e991077a1"
+          }
+        },
+        {
+          "client_id": "356853201865-0onvf62cgncb9ebkeeikhvmfmc3631un.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAXhhvFdJKx7S6uvfgxsYhPVsTbMhPiMTg"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356853201865-0onvf62cgncb9ebkeeikhvmfmc3631un.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

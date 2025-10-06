@@ -29,8 +29,9 @@
         <activity android:name=".LoginActivity" android:exported="false" />
         <activity android:name=".ProfileActivity" android:exported="false" />
         <activity android:name=".OtpActivity" android:exported="false" />
-
         <activity android:name=".OrderPlacedActivity" android:exported="false" />
+
+        <activity android:name=".RegisterActivity" android:exported="false" />
 
         <service
             android:name=".MyFirebaseMessagingService"

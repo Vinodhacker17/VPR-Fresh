@@ -34,7 +34,6 @@ class HomeFragment : Fragment() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationTextView: TextView
 
-    // Banner variables
     private lateinit var bannerViewPager: ViewPager2
     private val handler = Handler(Looper.getMainLooper())
     private lateinit var autoSlideRunnable: Runnable
@@ -100,12 +99,17 @@ class HomeFragment : Fragment() {
     private fun initBanner(view: View) {
         bannerViewPager = view.findViewById(R.id.banner_view_pager)
 
-        // Add the new banner_3 to the list
-        val bannerImages = listOf(R.drawable.banner_1, R.drawable.banner_2, R.drawable.banner_3)
-        val bannerAdapter = BannerAdapter(bannerImages)
-        bannerViewPager.adapter = bannerAdapter
+        // --- THE ONLY CHANGE IS HERE ---
+        // We now provide a list of online URLs instead of local files.
+        val bannerImageUrls = listOf(
+            "https://i.postimg.cc/cChXYtj9/super-sale-promotion-social-media-3d-render-template-design-banner-template-502896-377.jpg",
+            "https://i.postimg.cc/1tqpsVs3/horizontal-sale-banner-template-for-vegetarianor.jpg",
+            "https://i.postimg.cc/C1kfWysx/sale-and-offer-banner.jpg"
+        )
+        // -----------------------------
 
-        // Removed the TabLayoutMediator logic
+        val bannerAdapter = BannerAdapter(bannerImageUrls)
+        bannerViewPager.adapter = bannerAdapter
 
         autoSlideRunnable = Runnable {
             val currentItem = bannerViewPager.currentItem
@@ -170,7 +174,6 @@ class HomeFragment : Fragment() {
             "All", "Pharmacy", "Electronics", "Beauty", "Decor", "Kids", "Gifting", "Premium"
         )
     }
-
     private fun createProductList(): List<Product> {
         return listOf(
             Product("Cow Milk", "1 litre", "₹55", "https://i.postimg.cc/g0SfqNxy/milk-packet-png-9.png", "All"),

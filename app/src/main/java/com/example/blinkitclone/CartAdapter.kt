@@ -11,14 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 class CartAdapter(
-    private var cartItems: MutableList<Product>, // Make list mutable
+    private var cartItems: MutableMap<Product, Int>,
     private val context: Context,
-    private val onRemoveClicked: (Product) -> Unit // Callback for removing item
+    private val onQuantityChanged: () -> Unit // Callback to update total in the fragment
 ) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
-    fun updateList(newList: List<Product>) {
-        cartItems.clear()
-        cartItems.addAll(newList)
+    fun updateData(newCartItems: Map<Product, Int>) {
+        cartItems = newCartItems.toMutableMap()
         notifyDataSetChanged()
     }
 
@@ -27,7 +26,9 @@ class CartAdapter(
         val name: TextView = itemView.findViewById(R.id.cart_item_name)
         val description: TextView = itemView.findViewById(R.id.cart_item_description)
         val price: TextView = itemView.findViewById(R.id.cart_item_price)
-        val deleteButton: ImageButton = itemView.findViewById(R.id.delete_button)
+        val quantityText: TextView = itemView.findViewById(R.id.quantity_text)
+        val plusButton: ImageButton = itemView.findViewById(R.id.plus_button)
+        val minusButton: ImageButton = itemView.findViewById(R.id.minus_button)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
@@ -36,14 +37,22 @@ class CartAdapter(
     }
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
-        val item = cartItems[position]
-        holder.name.text = item.name
-        holder.description.text = item.description
-        holder.price.text = item.price
-        Glide.with(context).load(item.imageUrl).into(holder.image)
+        val product = cartItems.keys.elementAt(position)
+        val quantity = cartItems[product]
 
-        holder.deleteButton.setOnClickListener {
-            onRemoveClicked(item)
+        holder.name.text = product.name
+        holder.description.text = product.description
+        holder.price.text = product.price
+        holder.quantityText.text = quantity.toString()
+        Glide.with(context).load(product.imageUrl).into(holder.image)
+
+        holder.plusButton.setOnClickListener {
+            Cart.increaseQuantity(product)
+            onQuantityChanged() // Notify the fragment to update the total
+        }
+        holder.minusButton.setOnClickListener {
+            Cart.decreaseQuantity(product)
+            onQuantityChanged() // Notify the fragment to update the total
         }
     }
 
