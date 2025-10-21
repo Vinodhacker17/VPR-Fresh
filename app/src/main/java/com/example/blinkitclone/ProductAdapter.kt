@@ -13,7 +13,8 @@ import com.google.android.material.button.MaterialButton
 
 class ProductAdapter(
     private var productList: MutableList<Product>,
-    private val context: Context
+    private val context: Context,
+    private val onCartUpdated: () -> Unit // NEW: Callback function added
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -36,10 +37,10 @@ class ProductAdapter(
         holder.price.text = product.price
         Glide.with(context).load(product.imageUrl).into(holder.image)
 
-        // --- THIS IS THE UPDATED LOGIC ---
         holder.addButton.setOnClickListener {
             Cart.addItem(product)
             Toast.makeText(context, "${product.name} added to cart", Toast.LENGTH_SHORT).show()
+            onCartUpdated() // NEW: Call the callback to update the badge
         }
     }
 

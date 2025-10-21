@@ -7,7 +7,6 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-// The adapter now accepts a list of String URLs
 class BannerAdapter(private val bannerImageUrls: List<String>) :
     RecyclerView.Adapter<BannerAdapter.BannerViewHolder>() {
 
@@ -22,11 +21,16 @@ class BannerAdapter(private val bannerImageUrls: List<String>) :
     }
 
     override fun onBindViewHolder(holder: BannerViewHolder, position: Int) {
-        // We now use Glide to load the image from the URL
+        // Calculate the real position within your actual banner list
+        val actualPosition = position % bannerImageUrls.size
         Glide.with(holder.itemView.context)
-            .load(bannerImageUrls[position])
+            .load(bannerImageUrls[actualPosition])
             .into(holder.imageView)
     }
 
-    override fun getItemCount() = bannerImageUrls.size
+    // Return a very large number to simulate infinite scrolling
+    override fun getItemCount(): Int {
+        // Return Int.MAX_VALUE only if you have images, otherwise 0
+        return if (bannerImageUrls.isNotEmpty()) Int.MAX_VALUE else 0
+    }
 }

@@ -11,6 +11,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
 
     private val CHANNEL_ID = "order_updates"
+    private lateinit var bottomNav: BottomNavigationView // Made this a class variable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,14 +19,13 @@ class MainActivity : AppCompatActivity() {
 
         createNotificationChannel()
 
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        bottomNav = findViewById(R.id.bottom_navigation) // Initialize the class variable
         bottomNav.setOnItemSelectedListener {
             lateinit var selectedFragment: Fragment
             when (it.itemId) {
                 R.id.nav_home -> selectedFragment = HomeFragment()
                 R.id.nav_categories -> selectedFragment = CategoriesFragment()
-                // --- THIS IS THE UPDATED LINE ---
-                R.id.nav_cart -> selectedFragment = OrdersFragment() // Changed from nav_orders
+                R.id.nav_cart -> selectedFragment = OrdersFragment()
             }
             supportFragmentManager.beginTransaction().replace(R.id.fragment_container, selectedFragment).commit()
             true
@@ -35,7 +35,23 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
         }
+
+        updateCartBadge() // Call this to set the initial badge count
     }
+
+    // --- NEW FUNCTION TO UPDATE THE CART BADGE ---
+    fun updateCartBadge() {
+        val cartItemCount = Cart.getItemCount()
+        // Get or create the badge for the cart menu item
+        val badge = bottomNav.getOrCreateBadge(R.id.nav_cart)
+        if (cartItemCount > 0) {
+            badge.isVisible = true // Show the badge
+            badge.number = cartItemCount // Set the count
+        } else {
+            badge.isVisible = false // Hide the badge if the cart is empty
+        }
+    }
+    // ---------------------------------------------
 
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -51,4 +67,3 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
-

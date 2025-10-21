@@ -7,7 +7,11 @@ object Cart {
         val currentQuantity = items[product] ?: 0
         items[product] = currentQuantity + 1
     }
-
+    fun getItemCount(): Int {
+        // Returns the total number of items (sum of quantities)
+        return items.values.sum()
+        // Or, if you want the number of *unique* products: return items.size
+    }
     fun removeItem(product: Product) {
         items.remove(product)
     }
