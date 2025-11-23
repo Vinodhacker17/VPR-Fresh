@@ -223,29 +223,37 @@ class HomeFragment : Fragment() {
 
     private fun createProductList(): List<Product> {
         return listOf(
-            Product("Cow Milk", "1 litre", "₹55", "https://i.postimg.cc/g0SfqNxy/milk-packet-png-9.png", "All"),
-            Product("Brown Bread", "1 packet", "₹45", "https://i.postimg.cc/TYMK7gT8/OIP1.webp", "All"),
-            Product("Farm Eggs", "6 pieces", "₹70", "https://i.postimg.cc/Kj08YhZY/63bd504031840d5f1b3ad198.jpg", "All"),
-            Product("Ripe Tomatoes", "1 kg", "₹40", "https://i.postimg.cc/BbB9qdkG/OIP2.webp", "All"),
-            Product("Fresh Carrots", "500 g", "₹30", "https://i.postimg.cc/C1b9N3Ff/pngtree-fresh-carrot-isolated-png-png-image-11516978.png", "All"),
-            Product("Spinach Bunch", "250 g", "₹25", "https://i.postimg.cc/FRbnc0Zy/fresh-spinach-bunch-isolated-0m6g4yfufuqpjjml.png", "All"),
-            Product("Aspirin", "10 tablets", "₹20", "https://i.postimg.cc/D0XxvnQM/81410.webp", "Pharmacy"),
-            Product("Band-Aids", "20 strips", "₹50", "https://i.postimg.cc/3wkm59Fn/5e9586b6-c95f-4eaf-a7a5-6c505170a4d3-1-ce4e8cf9ddc81e066879cfd8f30e4caf.webp", "Pharmacy"),
-            Product("Cough Syrup", "100 ml", "₹120", "https://i.postimg.cc/y6QyGfkJ/cough.webp", "Pharmacy"),
-            Product("Lipstick", "Matte Red", "₹450", "https://i.postimg.cc/C5vpd35h/pngtree-lipstick-and-gloss-makeup-cosmetics-products-png-image-12956252.png", "Beauty"),
-            Product("Mascara", "Volumizing", "₹300", "https://i.postimg.cc/V61xgfbs/Mascara-PNG-Picture.png", "Beauty"),
-            Product("Sunscreen", "SPF 50", "₹550", "https://i.postimg.cc/0NBXTVm8/d9j76-SA-Sunscreen-676x772plx.png", "Beauty"),
-            Product("Wireless Mouse", "2.4GHz Optical", "₹800", "https://i.postimg.cc/bw6mnmmQ/61-Mk3-Yq-YHp-L.jpg", "Electronics"),
-            Product("Earbuds", "Bluetooth 5.1", "₹1500", "https://i.postimg.cc/kMfRqLGF/1.png", "Electronics"),
-            Product("Power Bank", "10000mAh", "₹1200", "https://i.postimg.cc/cJR6jbP3/hero-UM1107.webp", "Electronics"),
-            Product("Scented Candle", "Lavender", "₹350", "https://i.postimg.cc/j255Dd26/R.png", "Decor"),
-            Product("Photo Frame", "6x4 inch", "₹250", "https://i.postimg.cc/RZrSBT7L/OIP34.webp", "Decor"),
-            Product("Toy Car", "Die-cast model", "₹400", "https://i.postimg.cc/N0BSd98t/eng-pl-Fast-METAL-remote-controlled-car-RC0517-15307-1.jpg", "Kids"),
-            Product("Crayons", "12 pack", "₹80", "https://i.postimg.cc/gJDZ35zG/crayola-64-crayon.jpg", "Kids"),
-            Product("Gift Wrap", "2 meters", "₹100", "https://i.postimg.cc/WbKHfNRd/pngtree-christmas-gift-wrapping-png-image-10668882.png", "Gifting"),
-            Product("Chocolate Box", "Assorted", "₹600", "https://i.postimg.cc/t4QzxYQN/pngtree-beautiful-chocolate-box-png-image-13340096.png", "Gifting"),
-            Product("Imported Cheese", "Gouda, 200g", "₹750", "https://i.postimg.cc/FH3ttWcB/pngtree-cheese-dairy-product-png-image-11620721.png", "Premium"),
-            Product("Dark Chocolate", "70% Cacao", "₹400", "https://i.postimg.cc/k4jzNk3B/Lindt-Excellence-85-Cocoa-Dark-Chocolate-2-X-100-G-768x958.jpg", "Premium")
+            Product("Cow Milk", "1 litre", "₹55", "https://i.postimg.cc/g0SfqNxy/milk-packet-png-9.png", "Dairy, Bread & Eggs", "Milk"),
+            Product("Brown Bread", "1 packet", "₹45", "https://i.postimg.cc/TYMK7gT8/OIP1.webp", "Dairy, Bread & Eggs", "Bread & Buns"),
+            Product("Farm Eggs", "6 pieces", "₹70", "https://i.postimg.cc/Kj08YhZY/63bd504031840d5f1b3ad198.jpg", "Dairy, Bread & Eggs", "Eggs"),
+
+            Product("Ripe Tomatoes", "1 kg", "₹40", "https://i.postimg.cc/BbB9qdkG/OIP2.webp", "Vegetables & Fruits", "Vegetables"),
+            Product("Fresh Carrots", "500 g", "₹30", "https://i.postimg.cc/C1b9N3Ff/pngtree-fresh-carrot-isolated-png-png-image-11516978.png", "Vegetables & Fruits", "Vegetables"),
+            Product("Spinach Bunch", "250 g", "₹25", "https://i.postimg.cc/FRbnc0Zy/fresh-spinach-bunch-isolated-0m6g4yfufuqpjjml.png", "Vegetables & Fruits", "Vegetables"),
+
+            Product("Aspirin", "10 tablets", "₹20", "https://i.postimg.cc/D0XxvnQM/81410.webp", "Pharmacy", "Medicines"),
+            Product("Band-Aids", "20 strips", "₹50", "https://i.postimg.cc/3wkm59Fn/5e9586b6-c95f-4eaf-a7a5-6c505170a4d3-1-ce4e8cf9ddc81e066879cfd8f30e4caf.webp", "Pharmacy", "First Aid"),
+            Product("Cough Syrup", "100 ml", "₹120", "https://i.postimg.cc/y6QyGfkJ/cough.webp", "Pharmacy", "Medicines"),
+
+            Product("Lipstick", "Matte Red", "₹450", "https://i.postimg.cc/C5vpd35h/pngtree-lipstick-and-gloss-makeup-cosmetics-products-png-image-12956252.png", "Beauty", "Makeup"),
+            Product("Mascara", "Volumizing", "₹300", "https://i.postimg.cc/V61xgfbs/Mascara-PNG-Picture.png", "Beauty", "Makeup"),
+            Product("Sunscreen", "SPF 50", "₹550", "https://i.postimg.cc/0NBXTVm8/d9j76-SA-Sunscreen-676x772plx.png", "Beauty", "Skincare"),
+
+            Product("Wireless Mouse", "2.4GHz Optical", "₹800", "https://i.postimg.cc/bw6mnmmQ/61-Mk3-Yq-YHp-L.jpg", "Electronics", "Accessories"),
+            Product("Earbuds", "Bluetooth 5.1", "₹1500", "https://i.postimg.cc/kMfRqLGF/1.png", "Electronics", "Audio"),
+            Product("Power Bank", "10000mAh", "₹1200", "https://i.postimg.cc/cJR6jbP3/hero-UM1107.webp", "Electronics", "Accessories"),
+
+            Product("Scented Candle", "Lavender", "₹350", "https://i.postimg.cc/j255Dd26/R.png", "Decor", "Home Decor"),
+            Product("Photo Frame", "6x4 inch", "₹250", "https://i.postimg.cc/RZrSBT7L/OIP34.webp", "Decor", "Home Decor"),
+
+            Product("Toy Car", "Die-cast model", "₹400", "https://i.postimg.cc/N0BSd98t/eng-pl-Fast-METAL-remote-controlled-car-RC0517-15307-1.jpg", "Kids", "Toys"),
+            Product("Crayons", "12 pack", "₹80", "https://i.postimg.cc/gJDZ35zG/crayola-64-crayon.jpg", "Kids", "Stationery"),
+
+            Product("Gift Wrap", "2 meters", "₹100", "https://i.postimg.cc/WbKHfNRd/pngtree-christmas-gift-wrapping-png-image-10668882.png", "Gifting", "Wrapping"),
+            Product("Chocolate Box", "Assorted", "₹600", "https://i.postimg.cc/t4QzxYQN/pngtree-beautiful-chocolate-box-png-image-13340096.png", "Gifting", "Chocolates"),
+
+            Product("Imported Cheese", "Gouda, 200g", "₹750", "https://i.postimg.cc/FH3ttWcB/pngtree-cheese-dairy-product-png-image-11620721.png", "Premium", "Gourmet"),
+            Product("Dark Chocolate", "70% Cacao", "₹400", "https://i.postimg.cc/k4jzNk3B/Lindt-Excellence-85-Cocoa-Dark-Chocolate-2-X-100-G-768x958.jpg", "Premium", "Gourmet")
         )
     }
 }
