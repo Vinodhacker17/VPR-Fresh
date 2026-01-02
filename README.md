@@ -22,23 +22,39 @@ This project goes beyond basic UI/UX to implement robust engineering practices l
 
 🖼️ Dynamic UI: Infinite scrolling banners using ViewPager2 and optimized image caching with Glide.
 
-📸 Screenshots
+📸 App Screenshots
 
-Home Screen
+Onboarding & Auth
 
-Category Split-View
+Login Screen
+
+<img src="screenshots/SplashScreen.jpg" width="300">
+
+<img src="screenshots/Sign_in.jpg" width="300">
+
+Registration
+
+Home Dashboard
+
+<img src="screenshots/Sign_up.jpg" width="300">
 
 <img src="screenshots/home.jpg" width="300">
 
-<img src="screenshots/category.jpg" width="300">
+Category Split-View
 
 Persistent Cart
 
-Profile & Orders
+<img src="screenshots/category.jpg" width="300">
 
 <img src="screenshots/cart.jpg" width="300">
 
+User Profile
+
+Order Success
+
 <img src="screenshots/profile.jpg" width="300">
+
+<img src="screenshots/orderSuccess.jpg" width="300">
 
 🛠️ Tech Stack
 
