@@ -19,19 +19,19 @@ This project goes beyond basic UI/UX to implement robust engineering practices l
 
 | Onboarding & Auth | Login Screen |
 |:---:|:---:|
-| <img src="screenshots/SplashScreen.jpg" width="300"> | <img src="Screenshots/Sign_in.jpg" width="300"> |
+| <img src="Screenshots/SplashScreen.jpg" width="300"> | <img src="Screenshots/Sign_in.jpg" width="300"> |
 
 | Registration | Home Dashboard |
 |:---:|:---:|
-| <img src="screenshots/Sign_up.jpg" width="300"> | <img src="screenshots/home.jpg" width="300"> |
+| <img src="Screenshots/Sign_up.jpg" width="300"> | <img src="Screenshots/home.jpg" width="300"> |
 
 | Category Split-View | Persistent Cart |
 |:---:|:---:|
-| <img src="screenshots/category.jpg" width="300"> | <img src="screenshots/cart.jpg" width="300"> |
+| <img src="Screenshots/category.jpg" width="300"> | <img src="Screenshots/cart.jpg" width="300"> |
 
 | User Profile | Order Success |
 |:---:|:---:|
-| <img src="screenshots/profile.jpg" width="300"> | <img src="screenshots/orderSuccess.jpg" width="300"> |
+| <img src="Screenshots/profile.jpg" width="300"> | <img src="Screenshots/orderSuccess.jpg" width="300"> |
 
 ## 🛠️ Tech Stack
 * **Language:** Kotlin
