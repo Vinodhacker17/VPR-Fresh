@@ -19,7 +19,7 @@ This project goes beyond basic UI/UX to implement robust engineering practices l
 
 | Onboarding & Auth | Login Screen |
 |:---:|:---:|
-| <img src="screenshots/SplashScreen.jpg" width="300"> | <img src="screenshots/Sign_in.jpg" width="300"> |
+| <img src="screenshots/SplashScreen.jpg" width="300"> | <img src="Screenshots/Sign_in.jpg" width="300"> |
 
 | Registration | Home Dashboard |
 |:---:|:---:|
